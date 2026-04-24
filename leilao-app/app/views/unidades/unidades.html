@@ -1,0 +1,59 @@
+<section class="page-card p-4">
+    <div class="page-header">
+        <div>
+            <h2 class="h4 mb-1">Unidades</h2>
+            <p class="text-muted mb-0">CRUD completo em tabela com formulario em modal.</p>
+        </div>
+        <button class="btn btn-primary" ng-click="vm.openCreate()">Nova unidade</button>
+    </div>
+
+    <div class="alert alert-danger" ng-if="vm.error">{{ vm.error }}</div>
+    <div class="text-muted" ng-if="vm.loading">Carregando unidades...</div>
+
+    <div class="table-responsive" ng-if="!vm.loading && vm.unidades.length">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th class="text-end">Acoes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="unidade in vm.unidades track by unidade.id">
+                    <td>{{ unidade.id }}</td>
+                    <td>{{ unidade.nome }}</td>
+                    <td class="text-end">
+                        <button class="btn btn-sm btn-outline-secondary me-2" ng-click="vm.openEdit(unidade)">Editar</button>
+                        <button class="btn btn-sm btn-outline-danger" ng-click="vm.remove(unidade)">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="empty-state" ng-if="!vm.loading && !vm.unidades.length">Nenhuma unidade encontrada.</div>
+</section>
+
+<div class="modal-mask" ng-if="vm.modalOpen">
+    <div class="modal-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="h5 mb-0">{{ vm.form.id ? 'Editar unidade' : 'Nova unidade' }}</h3>
+            <button class="btn-close" type="button" ng-click="vm.closeModal()"></button>
+        </div>
+
+        <form name="unidadeForm" novalidate ng-submit="vm.save(unidadeForm)">
+            <div class="mb-3">
+                <label class="form-label" for="nome">Nome</label>
+                <input id="nome" name="nome" type="text" class="form-control" ng-model="vm.form.nome" maxlength="128" required>
+                <div class="field-error" ng-if="unidadeForm.$submitted && unidadeForm.nome.$error.required">Informe o nome.</div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+                <button class="btn btn-outline-secondary" type="button" ng-click="vm.closeModal()">Cancelar</button>
+                <button class="btn btn-primary" type="submit">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+

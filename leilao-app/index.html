@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ Leilao</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
+</head>
+<body ng-app="azLeilaoApp">
+    <div ng-include="'app/components/menu/menu.component.html'"></div>
+    <main class="container py-4">
+        <div class="alert alert-danger" ng-if="appError">{{ appError }}</div>
+        <div ng-view></div>
+    </main>
+
+    <script src="/node_modules/angular/angular.min.js"></script>
+    <script src="/node_modules/angular-route/angular-route.min.js"></script>
+
+    <script src="/app/app.module.js"></script>
+    <script src="/app/app.routes.js"></script>
+    <script src="/app/core/api/api.config.js"></script>
+    <script src="/app/core/services/unidade.service.js"></script>
+    <script src="/app/core/services/empresa.service.js"></script>
+    <script src="/app/core/services/leilao.service.js"></script>
+    <script src="/app/components/menu/menu.component.js"></script>
+    <script src="/app/views/unidades/unidades.controller.js"></script>
+    <script src="/app/views/empresas/empresas.controller.js"></script>
+    <script src="/app/views/empresa-form/empresa-form.controller.js"></script>
+    <script src="/app/views/leiloes/leiloes.controller.js"></script>
+</body>
+</html>
+
