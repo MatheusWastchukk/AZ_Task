@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  database:
+    image: postgres:10.5-alpine
+    container_name: az-database
+    env_file:
+      - ./variables.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresqldata:/var/lib/postgresql/data
+      - ./database/ddl.sql:/docker-entrypoint-initdb.d/01-ddl.sql:ro
+      - ./database/dml.sql:/docker-entrypoint-initdb.d/02-dml.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d az"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./leilao-api
+    container_name: az-backend
+    depends_on:
+      database:
+        condition: service_healthy
+    env_file:
+      - ./variables.env
+    ports:
+      - "8081:8081"
+
+  frontend:
+    build:
+      context: ./leilao-app
+    container_name: az-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgresqldata:
