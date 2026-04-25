@@ -2,7 +2,7 @@
     <div class="page-header">
         <div>
             <h2 class="h4 mb-1">Empresas</h2>
-            <p class="text-muted mb-0">Consulta com acoes de novo, editar e excluir.</p>
+            <p class="text-muted mb-0">Consulta com ações de novo, editar e excluir.</p>
         </div>
         <button class="btn btn-primary" ng-click="vm.goToCreate()">Nova empresa</button>
     </div>
@@ -15,10 +15,10 @@
             <thead>
                 <tr>
                     <th>CNPJ</th>
-                    <th>Razao social</th>
+                    <th>Razão social</th>
                     <th>Telefone</th>
                     <th>Email</th>
-                    <th class="text-end">Acoes</th>
+                    <th class="text-end">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,4 +38,3 @@
 
     <div class="empty-state" ng-if="!vm.loading && !vm.empresas.length">Nenhuma empresa encontrada.</div>
 </section>
-

@@ -19,7 +19,7 @@
                         vm.unidades = response.data;
                     })
                     .catch(function () {
-                        vm.error = 'Nao foi possivel carregar as unidades.';
+                        vm.error = 'Não foi possível carregar as unidades.';
                     })
                     .finally(function () {
                         vm.loading = false;
@@ -55,7 +55,7 @@
                     vm.closeModal();
                     vm.load();
                 }).catch(function () {
-                    vm.error = 'Nao foi possivel salvar a unidade.';
+                    vm.error = 'Não foi possível salvar a unidade.';
                 });
             };
 
@@ -67,11 +67,10 @@
                 UnidadeService.remove(unidade.id)
                     .then(vm.load)
                     .catch(function () {
-                        vm.error = 'Nao foi possivel excluir a unidade.';
+                        vm.error = 'Não foi possível excluir a unidade.';
                     });
             };
 
             vm.load();
         });
 })();
-

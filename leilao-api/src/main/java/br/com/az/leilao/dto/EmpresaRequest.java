@@ -14,7 +14,7 @@ public class EmpresaRequest {
 
     @NotBlank
     @Length(max = 32)
-    @Pattern(regexp = "^[0-9./-]+$", message = "formato invalido")
+    @Pattern(regexp = "^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$", message = "deve seguir o formato 00.000.000/0000-00")
     private String cnpj;
 
     @Length(max = 64)
@@ -24,6 +24,7 @@ public class EmpresaRequest {
     private String municipio;
 
     @Length(max = 10)
+    @Pattern(regexp = "^$|^\\d+$", message = "deve conter apenas numeros")
     private String numero;
 
     @Length(max = 64)
@@ -33,9 +34,11 @@ public class EmpresaRequest {
     private String bairro;
 
     @Length(max = 16)
+    @Pattern(regexp = "^$|^\\d{5}-\\d{3}$", message = "deve seguir o formato 00000-000")
     private String cep;
 
     @Length(max = 32)
+    @Pattern(regexp = "^$|^\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}$", message = "deve seguir o formato (00) 0000-0000 ou (00) 00000-0000")
     private String telefone;
 
     @Email

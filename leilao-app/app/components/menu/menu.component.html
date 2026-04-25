@@ -2,15 +2,15 @@
     <div class="container py-4">
         <div class="d-flex flex-column flex-lg-row justify-content-between gap-3">
             <div>
-                <div class="brand-title">AZ Leilao</div>
-                <div class="text-white-50">Teste tecnico em AngularJS + Spring Boot + PostgreSQL</div>
+                <div class="brand-title">AZ Leilão</div>
+                <div class="text-white-50">Teste técnico em AngularJS + Spring Boot + PostgreSQL</div>
             </div>
             <nav class="nav nav-pills align-items-center">
+                <a class="nav-link" ng-class="{active: vm.isActive('/')}" href="#/">Início</a>
                 <a class="nav-link" ng-class="{active: vm.isActive('/unidades')}" href="#/unidades">Unidades</a>
                 <a class="nav-link" ng-class="{active: vm.isActive('/empresas')}" href="#/empresas">Empresas</a>
-                <a class="nav-link" ng-class="{active: vm.isActive('/leiloes')}" href="#/leiloes">Leiloes</a>
+                <a class="nav-link" ng-class="{active: vm.isActive('/leiloes')}" href="#/leiloes">Leilões</a>
             </nav>
         </div>
     </div>
 </header>
-

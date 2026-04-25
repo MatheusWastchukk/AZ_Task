@@ -2,7 +2,7 @@
     <div class="page-header">
         <div>
             <h2 class="h4 mb-1">{{ vm.isEdit ? 'Editar empresa' : 'Nova empresa' }}</h2>
-            <p class="text-muted mb-0">Formulario com validacoes de obrigatoriedade, formato e tamanho.</p>
+            <p class="text-muted mb-0">Formulário com validações de obrigatoriedade, formato e tamanho.</p>
         </div>
     </div>
 
@@ -12,38 +12,40 @@
     <form name="empresaForm" novalidate ng-submit="vm.save(empresaForm)" ng-if="!vm.loading">
         <div class="row g-3">
             <div class="col-md-6">
-                <label class="form-label">Razao social</label>
+                <label class="form-label">Razão social</label>
                 <input type="text" name="razaoSocial" class="form-control" ng-model="vm.form.razaoSocial" maxlength="64" required>
-                <div class="field-error" ng-if="empresaForm.$submitted && empresaForm.razaoSocial.$error.required">Razao social obrigatoria.</div>
+                <div class="field-error" ng-if="empresaForm.$submitted && empresaForm.razaoSocial.$error.required">Razão social obrigatória.</div>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">CNPJ</label>
-                <input type="text" name="cnpj" class="form-control" ng-model="vm.form.cnpj" ng-pattern="/^[0-9./-]+$/" maxlength="32" placeholder="00.000.000/0000-00" required>
-                <div class="field-error" ng-if="empresaForm.$submitted && empresaForm.cnpj.$error.required">CNPJ obrigatorio.</div>
-                <div class="field-error" ng-if="empresaForm.cnpj.$error.pattern">Use apenas numeros e os separadores ./-.</div>
+                <input type="text" name="cnpj" class="form-control" ng-model="vm.form.cnpj" input-mask="cnpj" ng-pattern="vm.patterns.cnpj" maxlength="18" placeholder="00.000.000/0000-00" required inputmode="numeric">
+                <div class="field-error" ng-if="empresaForm.$submitted && empresaForm.cnpj.$error.required">CNPJ obrigatório.</div>
+                <div class="field-error" ng-if="empresaForm.cnpj.$error.pattern">Use o formato 00.000.000/0000-00.</div>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Telefone</label>
-                <input type="text" name="telefone" class="form-control" ng-model="vm.form.telefone" maxlength="32" placeholder="(00) 0000-0000">
+                <input type="text" name="telefone" class="form-control" ng-model="vm.form.telefone" input-mask="telefone" ng-pattern="vm.patterns.telefone" maxlength="15" placeholder="(00) 00000-0000" inputmode="numeric">
+                <div class="field-error" ng-if="empresaForm.telefone.$error.pattern">Use (00) 0000-0000 ou (00) 00000-0000.</div>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Email</label>
                 <input type="email" name="email" class="form-control" ng-model="vm.form.email" maxlength="254">
-                <div class="field-error" ng-if="empresaForm.email.$error.email">Email invalido.</div>
+                <div class="field-error" ng-if="empresaForm.email.$error.email">E-mail inválido.</div>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">Site</label>
                 <input type="url" name="site" class="form-control" ng-model="vm.form.site" maxlength="254" placeholder="https://empresa.com">
-                <div class="field-error" ng-if="empresaForm.site.$error.url">URL invalida.</div>
+                <div class="field-error" ng-if="empresaForm.site.$error.url">URL inválida.</div>
             </div>
 
             <div class="col-md-6">
                 <label class="form-label">CEP</label>
-                <input type="text" name="cep" class="form-control" ng-model="vm.form.cep" maxlength="16">
+                <input type="text" name="cep" class="form-control" ng-model="vm.form.cep" ng-change="vm.applyCepMask()" ng-pattern="vm.patterns.cep" maxlength="9" placeholder="00000-000">
+                <div class="field-error" ng-if="empresaForm.cep.$error.pattern">Use o formato 00000-000.</div>
             </div>
 
             <div class="col-md-4">
@@ -52,8 +54,9 @@
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Numero</label>
-                <input type="text" name="numero" class="form-control" ng-model="vm.form.numero" maxlength="10">
+                <label class="form-label">Número</label>
+                <input type="text" name="numero" class="form-control" ng-model="vm.form.numero" ng-change="vm.applyNumberMask()" ng-pattern="vm.patterns.numero" maxlength="10" inputmode="numeric">
+                <div class="field-error" ng-if="empresaForm.numero.$error.pattern">Informe apenas numeros.</div>
             </div>
 
             <div class="col-md-4">
@@ -62,7 +65,7 @@
             </div>
 
             <div class="col-md-4">
-                <label class="form-label">Municipio</label>
+                <label class="form-label">Município</label>
                 <input type="text" name="municipio" class="form-control" ng-model="vm.form.municipio" maxlength="64">
             </div>
 
@@ -74,7 +77,7 @@
             <div class="col-md-4">
                 <label class="form-label">Usuario</label>
                 <input type="text" name="usuario" class="form-control" ng-model="vm.form.usuario" maxlength="20" required>
-                <div class="field-error" ng-if="empresaForm.$submitted && empresaForm.usuario.$error.required">Usuario obrigatorio.</div>
+                <div class="field-error" ng-if="empresaForm.$submitted && empresaForm.usuario.$error.required">Usuário obrigatório.</div>
             </div>
 
             <div class="col-md-6">

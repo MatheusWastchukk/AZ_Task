@@ -6,6 +6,11 @@
             $locationProvider.hashPrefix('');
 
             $routeProvider
+                .when('/', {
+                    templateUrl: 'app/views/home/home.html',
+                    controller: 'HomeController',
+                    controllerAs: 'vm'
+                })
                 .when('/unidades', {
                     templateUrl: 'app/views/unidades/unidades.html',
                     controller: 'UnidadesController',
@@ -32,7 +37,7 @@
                     controllerAs: 'vm'
                 })
                 .otherwise({
-                    redirectTo: '/unidades'
+                    redirectTo: '/'
                 });
         });
 })();

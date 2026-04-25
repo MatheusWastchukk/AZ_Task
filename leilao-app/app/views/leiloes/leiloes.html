@@ -1,21 +1,21 @@
 <section class="page-card p-4">
     <div class="page-header">
         <div>
-            <h2 class="h4 mb-1">Leiloes</h2>
-            <p class="text-muted mb-0">Consulta com vendedor, inicio previsto e total calculado no backend.</p>
+            <h2 class="h4 mb-1">Leilões</h2>
+            <p class="text-muted mb-0">Consulta com vendedor, início previsto e total calculado no backend.</p>
         </div>
     </div>
 
     <div class="alert alert-danger" ng-if="vm.error">{{ vm.error }}</div>
-    <div class="text-muted" ng-if="vm.loading">Carregando leiloes...</div>
+    <div class="text-muted" ng-if="vm.loading">Carregando leilões...</div>
 
     <div class="table-responsive" ng-if="!vm.loading && vm.leiloes.length">
         <table class="table align-middle">
             <thead>
                 <tr>
                     <th>Vendedor</th>
-                    <th>Inicio previsto</th>
-                    <th class="text-end">Total do leilao</th>
+                    <th>Início previsto</th>
+                    <th class="text-end">Total do leilão</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +28,5 @@
         </table>
     </div>
 
-    <div class="empty-state" ng-if="!vm.loading && !vm.leiloes.length">Nenhum leilao encontrado.</div>
+    <div class="empty-state" ng-if="!vm.loading && !vm.leiloes.length">Nenhum leilão encontrado.</div>
 </section>
-

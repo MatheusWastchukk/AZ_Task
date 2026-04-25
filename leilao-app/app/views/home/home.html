@@ -1,0 +1,18 @@
+<section class="page-card p-4">
+    <div class="page-header">
+        <div>
+            <h2 class="h4 mb-1">Página inicial</h2>
+            <p class="text-muted mb-0">Escolha uma área do sistema para navegar entre as telas do desafio.</p>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-4" ng-repeat="link in vm.links track by link.titulo">
+            <article class="border rounded-4 p-4 h-100">
+                <h3 class="h5">{{ link.titulo }}</h3>
+                <p class="text-muted mb-4">{{ link.descricao }}</p>
+                <a class="btn btn-primary" ng-href="{{ link.rota }}">{{ link.acao }}</a>
+            </article>
+        </div>
+    </div>
+</section>

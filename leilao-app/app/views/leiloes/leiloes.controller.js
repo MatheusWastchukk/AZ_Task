@@ -17,7 +17,7 @@
                         vm.leiloes = response.data;
                     })
                     .catch(function () {
-                        vm.error = 'Nao foi possivel carregar os leiloes.';
+                        vm.error = 'Não foi possível carregar os leilões.';
                     })
                     .finally(function () {
                         vm.loading = false;
@@ -27,4 +27,3 @@
             vm.load();
         });
 })();
-
