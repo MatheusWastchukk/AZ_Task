@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('azLeilaoApp')
-        .controller('EmpresaFormController', function ($location, $routeParams, EmpresaService) {
+        .controller('EmpresaFormController', function ($location, $routeParams, EmpresaService, ErrorMessageService) {
             var vm = this;
             var empresaId = $routeParams.id;
 
@@ -50,8 +50,8 @@
                     .then(function (response) {
                         vm.form = normalizeLoadedForm(response.data);
                     })
-                    .catch(function () {
-                        vm.error = 'Não foi possível carregar a empresa.';
+                    .catch(function (error) {
+                        vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível carregar a empresa.');
                     })
                     .finally(function () {
                         vm.loading = false;
@@ -73,21 +73,13 @@
                 action.then(function () {
                     $location.path('/empresas');
                 }).catch(function (error) {
-                    vm.error = extractError(error) || 'Não foi possível salvar a empresa.';
+                    vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível salvar a empresa.');
                 });
             };
 
             vm.cancel = function () {
                 $location.path('/empresas');
             };
-
-            function extractError(error) {
-                if (!error || !error.data || !error.data.details || !error.data.details.length) {
-                    return null;
-                }
-
-                return error.data.details.join(' | ');
-            }
 
             function buildPayload() {
                 return {

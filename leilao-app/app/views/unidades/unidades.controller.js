@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('azLeilaoApp')
-        .controller('UnidadesController', function (UnidadeService) {
+        .controller('UnidadesController', function (ErrorMessageService, UnidadeService) {
             var vm = this;
 
             vm.unidades = [];
@@ -18,8 +18,8 @@
                     .then(function (response) {
                         vm.unidades = response.data;
                     })
-                    .catch(function () {
-                        vm.error = 'Não foi possível carregar as unidades.';
+                    .catch(function (error) {
+                        vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível carregar as unidades.');
                     })
                     .finally(function () {
                         vm.loading = false;
@@ -54,8 +54,8 @@
                 action.then(function () {
                     vm.closeModal();
                     vm.load();
-                }).catch(function () {
-                    vm.error = 'Não foi possível salvar a unidade.';
+                }).catch(function (error) {
+                    vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível salvar a unidade.');
                 });
             };
 
@@ -66,8 +66,8 @@
 
                 UnidadeService.remove(unidade.id)
                     .then(vm.load)
-                    .catch(function () {
-                        vm.error = 'Não foi possível excluir a unidade.';
+                    .catch(function (error) {
+                        vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível excluir a unidade.');
                     });
             };
 

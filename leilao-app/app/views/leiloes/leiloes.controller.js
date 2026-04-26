@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('azLeilaoApp')
-        .controller('LeiloesController', function (LeilaoService) {
+        .controller('LeiloesController', function (ErrorMessageService, LeilaoService) {
             var vm = this;
 
             vm.leiloes = [];
@@ -16,8 +16,8 @@
                     .then(function (response) {
                         vm.leiloes = response.data;
                     })
-                    .catch(function () {
-                        vm.error = 'Não foi possível carregar os leilões.';
+                    .catch(function (error) {
+                        vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível carregar os leilões.');
                     })
                     .finally(function () {
                         vm.loading = false;

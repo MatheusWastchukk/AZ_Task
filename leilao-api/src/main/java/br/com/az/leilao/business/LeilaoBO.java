@@ -92,7 +92,7 @@ public class LeilaoBO {
         response.setId(leilao.getId());
         response.setRazaoSocialVendedor(leilao.getVendedor().getRazaoSocial());
         response.setInicioPrevisto(leilao.getInicioPrevisto());
-        // O enunciado pede o total consolidado do leilao como soma de quantidade * valorInicial de cada lote.
+        // O teste pede o total consolidado do leilao como soma de quantidade * valorInicial de cada lote.
         response.setTotal(
                 lotes.stream()
                         .filter(lote -> lote.getLeilao().getId().equals(leilao.getId()))

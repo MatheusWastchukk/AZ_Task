@@ -24,6 +24,8 @@ Entrega do teste técnico da AZ com:
 
 O repositório público do teste apresenta o client em Vue. Nesta entrega, os requisitos funcionais foram mantidos, mas o frontend foi implementado em AngularJS por alinhamento ao contexto real informado pelo time da AZ durante a entrevista.
 
+Além disso, mantive uma página inicial em `#/` por decisão de experiência de navegação. Na minha concepção de sistema, o ideal é abrir primeiro em uma tela home e, a partir dela, seguir para as telas de registro e consulta, em vez de iniciar diretamente em uma tela de cadastro. As rotas exigidas pelo desafio continuam disponíveis normalmente.
+
 ## Estrutura
 
 - `database/ddl.sql`
@@ -82,6 +84,20 @@ docker compose up --build
 - Validações na tela de empresa para obrigatoriedade, e-mail, URL, tamanho máximo, máscara de CNPJ, telefone, CEP e número
 - Frontend empacotado como site estático e servido por `nginx`
 
+## Validações Executadas
+
+- subida completa da stack com `docker compose up --build`
+- validação de resposta do frontend em `http://localhost:8080`
+- validação de resposta da API em `http://localhost:8081`
+- conferência de carga inicial com pelo menos 10 registros em `unidade`, `empresa`, `leilao`, `lote` e `comprador`
+- validação de CRUD para `unidades`
+- validação de CRUD para `empresas`
+- validação de CRUD para `leiloes`
+- validação de CRUD para `lotes`
+- validação de CRUD para `compradores`
+- validação de regras da tela de empresa, incluindo obrigatoriedade, formatos e limites
+- validação do cálculo do total do leilão no backend
+
 ## Validações da Tela de Empresa
 
 - `razaoSocial`, `cnpj` e `usuario` obrigatórios
@@ -98,7 +114,8 @@ docker compose up --build
 - A camada `business` no backend foi mantida porque o enunciado do teste pede explicitamente essa separação entre `service`, `business`, `repository` e `entity`.
 - O total do leilão é calculado no backend como soma de `quantidade * valorInicial` dos lotes vinculados.
 - O banco é inicializado automaticamente com `ddl.sql` e `dml.sql` ao subir o container do PostgreSQL pela primeira vez.
-- O frontend é servido por `nginx`, evitando dependência de servidor de desenvolvimento na apresentação.
+- A API foi padronizada majoritariamente em plural, como `GET /empresas`, `GET /unidades` e `GET /leiloes`. A rota `#/empresa` no frontend foi mantida apenas para o formulário de inclusão e `#/empresa/:id` para edição.
+- O recurso `comprador` utiliza chave composta formada por `empresa` e `leilao`. Por isso, as operações específicas do CRUD usam o formato `GET|PUT|DELETE /compradores/{empresaId}/{leilaoId}` em vez de um identificador simples.
 
 ## Melhorias Futuras
 

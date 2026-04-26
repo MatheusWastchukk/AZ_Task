@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('azLeilaoApp')
-        .controller('EmpresasController', function ($location, EmpresaService) {
+        .controller('EmpresasController', function ($location, EmpresaService, ErrorMessageService) {
             var vm = this;
 
             vm.empresas = [];
@@ -16,8 +16,8 @@
                     .then(function (response) {
                         vm.empresas = response.data;
                     })
-                    .catch(function () {
-                        vm.error = 'Não foi possível carregar as empresas.';
+                    .catch(function (error) {
+                        vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível carregar as empresas.');
                     })
                     .finally(function () {
                         vm.loading = false;
@@ -39,8 +39,8 @@
 
                 EmpresaService.remove(empresa.id)
                     .then(vm.load)
-                    .catch(function () {
-                        vm.error = 'Não foi possível excluir a empresa.';
+                    .catch(function (error) {
+                        vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível excluir a empresa.');
                     });
             };
 

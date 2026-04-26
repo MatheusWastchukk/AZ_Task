@@ -8,19 +8,19 @@
             vm.links = [
                 {
                     titulo: 'Unidades',
-                    descricao: 'Cadastre, edite e exclua unidades em uma tela com modal e integração completa com a API.',
+                    descricao: 'Consulte, cadastre, edite e exclua unidades.',
                     rota: '#/unidades',
                     acao: 'Abrir unidades'
                 },
                 {
                     titulo: 'Empresas',
-                    descricao: 'Consulte empresas, acesse o formulário de cadastro e realize edição ou exclusão.',
+                    descricao: 'Consulte, cadastre, edite e exclua empresas.',
                     rota: '#/empresas',
                     acao: 'Abrir empresas'
                 },
                 {
                     titulo: 'Leilões',
-                    descricao: 'Visualize o vendedor, o início previsto e o total consolidado de cada leilão.',
+                    descricao: 'Consulte leilões.',
                     rota: '#/leiloes',
                     acao: 'Abrir leilões'
                 }
