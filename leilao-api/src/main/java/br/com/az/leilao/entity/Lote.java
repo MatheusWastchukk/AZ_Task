@@ -32,7 +32,7 @@ public class Lote {
     @Column(name = "quantidade", nullable = false, precision = 15, scale = 2)
     private BigDecimal quantidade;
 
-    @Column(name = "valor_inicial", nullable = false, precision = 15, scale = 2)
+    @Column(name = "valor_inicial", precision = 15, scale = 2)
     private BigDecimal valorInicial;
 
     @Column(name = "unidade", nullable = false, length = 128)

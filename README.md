@@ -8,14 +8,14 @@ Escolhi AngularJS pois é a stack atual dos projetos, como citado na entrevista.
 
 Entrega do teste técnico da AZ com:
 
-- scripts SQL manuais para criacao e carga inicial do banco
+- scripts SQL manuais para criação e carga inicial do banco
 - API REST completa para todas as tabelas do modelo
 - frontend AngularJS com as telas pedidas no desafio
 - execução completa via Docker
 
 ## Stack
 
-- Frontend: `AngularJS 1.8` + `angular-route` + `Bootstrap 5`
+- Frontend: `AngularJS 1.8` + `angular-route` + `Bootstrap 5` + `nginx`
 - Backend: `Java 8` + `Spring Boot` + `Spring Data JPA` + `Validation`
 - Banco: `PostgreSQL 10`
 - Infra: `Docker Compose`
@@ -80,6 +80,7 @@ docker compose up --build
 - Tela de empresas com consulta, inclusão, edição e exclusão
 - Tela de leilões com vendedor, início previsto e total calculado no backend
 - Validações na tela de empresa para obrigatoriedade, e-mail, URL, tamanho máximo, máscara de CNPJ, telefone, CEP e número
+- Frontend empacotado como site estático e servido por `nginx`
 
 ## Validações da Tela de Empresa
 
@@ -97,6 +98,7 @@ docker compose up --build
 - A camada `business` no backend foi mantida porque o enunciado do teste pede explicitamente essa separação entre `service`, `business`, `repository` e `entity`.
 - O total do leilão é calculado no backend como soma de `quantidade * valorInicial` dos lotes vinculados.
 - O banco é inicializado automaticamente com `ddl.sql` e `dml.sql` ao subir o container do PostgreSQL pela primeira vez.
+- O frontend é servido por `nginx`, evitando dependência de servidor de desenvolvimento na apresentação.
 
 ## Melhorias Futuras
 

@@ -22,7 +22,7 @@ public class Leilao {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "codigo", nullable = false)
+    @Column(name = "codigo")
     private Integer codigo;
 
     @Column(name = "descricao", nullable = false, length = 60)
@@ -97,4 +97,3 @@ public class Leilao {
         this.updatedAt = updatedAt;
     }
 }
-

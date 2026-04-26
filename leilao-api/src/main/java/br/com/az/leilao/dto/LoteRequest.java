@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 
 public class LoteRequest {
 
-    @NotNull
     private Integer numeroLote;
 
     @NotNull
@@ -19,7 +18,6 @@ public class LoteRequest {
     @DecimalMin(value = "0.01")
     private BigDecimal quantidade;
 
-    @NotNull
     @DecimalMin(value = "0.01")
     private BigDecimal valorInicial;
 

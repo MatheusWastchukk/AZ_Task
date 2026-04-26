@@ -96,9 +96,17 @@ public class LeilaoBO {
         response.setTotal(
                 lotes.stream()
                         .filter(lote -> lote.getLeilao().getId().equals(leilao.getId()))
-                        .map(lote -> lote.getQuantidade().multiply(lote.getValorInicial()))
+                        .map(this::calcularTotalLote)
                         .reduce(BigDecimal.ZERO, BigDecimal::add)
         );
         return response;
+    }
+
+    private BigDecimal calcularTotalLote(Lote lote) {
+        if (lote.getQuantidade() == null || lote.getValorInicial() == null) {
+            return BigDecimal.ZERO;
+        }
+
+        return lote.getQuantidade().multiply(lote.getValorInicial());
     }
 }

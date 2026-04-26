@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 public class LeilaoRequest {
 
-    @NotNull
     private Integer codigo;
 
     @Length(max = 60)
@@ -52,4 +51,3 @@ public class LeilaoRequest {
         this.inicioPrevisto = inicioPrevisto;
     }
 }
-
