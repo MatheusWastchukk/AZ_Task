@@ -16,16 +16,16 @@ INSERT INTO empresa (
     id, razao_social, cnpj, logradouro, municipio, numero, complemento, bairro, cep,
     telefone, email, site, usuario, senha, created_at, updated_at
 ) VALUES
-    (1, 'Armazens do Norte LTDA', '10.000.000/0001-00', 'Rua A', 'Sao Paulo', '100', 'Sala 1', 'Centro', '01000-000', '(11) 3000-0001', 'contato1@empresa.com', 'https://empresa1.com', 'empresa01', 'senhaSegura01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (2, 'Comercial Vale Verde SA', '10.000.000/0002-00', 'Rua B', 'Campinas', '200', 'Galpao 2', 'Jardins', '13000-000', '(19) 3000-0002', 'contato2@empresa.com', 'https://empresa2.com', 'empresa02', 'senhaSegura02', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (3, 'Industria Boa Safra LTDA', '10.000.000/0003-00', 'Rua C', 'Ribeirao Preto', '300', 'Bloco B', 'Campos', '14000-000', '(16) 3000-0003', 'contato3@empresa.com', 'https://empresa3.com', 'empresa03', 'senhaSegura03', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (4, 'Transportes Horizonte LTDA', '10.000.000/0004-00', 'Rua D', 'Santos', '400', 'Conjunto 4', 'Porto', '11000-000', '(13) 3000-0004', 'contato4@empresa.com', 'https://empresa4.com', 'empresa04', 'senhaSegura04', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (5, 'Agro Minas Exportacao', '10.000.000/0005-00', 'Rua E', 'Uberlandia', '500', 'Casa', 'Industrial', '38000-000', '(34) 3000-0005', 'contato5@empresa.com', 'https://empresa5.com', 'empresa05', 'senhaSegura05', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (6, 'Logistica Costa Azul', '10.000.000/0006-00', 'Rua F', 'Vitoria', '600', 'Andar 6', 'Praia', '29000-000', '(27) 3000-0006', 'contato6@empresa.com', 'https://empresa6.com', 'empresa06', 'senhaSegura06', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (7, 'Materiais Brasil Central', '10.000.000/0007-00', 'Rua G', 'Goiania', '700', 'Sala 7', 'Centro', '74000-000', '(62) 3000-0007', 'contato7@empresa.com', 'https://empresa7.com', 'empresa07', 'senhaSegura07', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (8, 'Metalurgica Pioneira', '10.000.000/0008-00', 'Rua H', 'Curitiba', '800', 'Fundos', 'CIC', '81000-000', '(41) 3000-0008', 'contato8@empresa.com', 'https://empresa8.com', 'empresa08', 'senhaSegura08', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (1, 'Armazens do Norte LTDA', '10.000.000/0001-45', 'Rua A', 'Sao Paulo', '100', 'Sala 1', 'Centro', '01000-000', '(11) 3000-0001', 'contato1@empresa.com', 'https://empresa1.com', 'empresa01', 'senhaSegura01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (2, 'Comercial Vale Verde SA', '10.000.000/0002-26', 'Rua B', 'Campinas', '200', 'Galpao 2', 'Jardins', '13000-000', '(19) 3000-0002', 'contato2@empresa.com', 'https://empresa2.com', 'empresa02', 'senhaSegura02', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (3, 'Industria Boa Safra LTDA', '10.000.000/0003-07', 'Rua C', 'Ribeirao Preto', '300', 'Bloco B', 'Campos', '14000-000', '(16) 3000-0003', 'contato3@empresa.com', 'https://empresa3.com', 'empresa03', 'senhaSegura03', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (4, 'Transportes Horizonte LTDA', '10.000.000/0004-98', 'Rua D', 'Santos', '400', 'Conjunto 4', 'Porto', '11000-000', '(13) 3000-0004', 'contato4@empresa.com', 'https://empresa4.com', 'empresa04', 'senhaSegura04', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (5, 'Agro Minas Exportacao', '10.000.000/0005-79', 'Rua E', 'Uberlandia', '500', 'Casa', 'Industrial', '38000-000', '(34) 3000-0005', 'contato5@empresa.com', 'https://empresa5.com', 'empresa05', 'senhaSegura05', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (6, 'Logistica Costa Azul', '10.000.000/0006-50', 'Rua F', 'Vitoria', '600', 'Andar 6', 'Praia', '29000-000', '(27) 3000-0006', 'contato6@empresa.com', 'https://empresa6.com', 'empresa06', 'senhaSegura06', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (7, 'Materiais Brasil Central', '10.000.000/0007-30', 'Rua G', 'Goiania', '700', 'Sala 7', 'Centro', '74000-000', '(62) 3000-0007', 'contato7@empresa.com', 'https://empresa7.com', 'empresa07', 'senhaSegura07', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+    (8, 'Metalurgica Pioneira', '10.000.000/0008-11', 'Rua H', 'Curitiba', '800', 'Fundos', 'CIC', '81000-000', '(41) 3000-0008', 'contato8@empresa.com', 'https://empresa8.com', 'empresa08', 'senhaSegura08', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
     (9, 'Construtora Serra Alta', '10.000.000/0009-00', 'Rua I', 'Belo Horizonte', '900', 'Loja', 'Savassi', '30000-000', '(31) 3000-0009', 'contato9@empresa.com', 'https://empresa9.com', 'empresa09', 'senhaSegura09', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (10, 'Recicla Sul Cooperativa', '10.000.000/0010-00', 'Rua J', 'Porto Alegre', '1000', 'Bloco 10', 'Navegantes', '90000-000', '(51) 3000-0010', 'contato10@empresa.com', 'https://empresa10.com', 'empresa10', 'senhaSegura10', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+    (10, 'Recicla Sul Cooperativa', '10.000.000/0010-36', 'Rua J', 'Porto Alegre', '1000', 'Bloco 10', 'Navegantes', '90000-000', '(51) 3000-0010', 'contato10@empresa.com', 'https://empresa10.com', 'empresa10', 'senhaSegura10', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 SELECT setval('seq_empresa', 10, true);
 

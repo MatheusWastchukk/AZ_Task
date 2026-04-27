@@ -35,6 +35,7 @@ Além disso, mantive uma página inicial em `#/` por decisão de experiência de
 - `leilao-app/`
 - `docker-compose.yml`
 - `variables.env`
+- `variables.env.example`
 
 ## Como Executar
 
@@ -43,6 +44,19 @@ Na raiz `AZ_Task`:
 ```bash
 docker compose up --build
 ```
+
+Use `variables.env.example` como modelo para a configuracao local das variaveis de ambiente.
+
+Depois que os containers estiverem no ar, o Swagger da API pode ser acessado em:
+
+```text
+http://localhost:8081/swagger-ui.html
+```
+
+Observação:
+
+- a busca automática de CEP usa o serviço público ViaCEP por meio do backend
+- a URL base pode ser ajustada via `VIACEP_BASE_URL` no arquivo `variables.env`
 
 ## Portas
 
@@ -71,6 +85,24 @@ docker compose up --build
 - `GET|PUT|DELETE /lotes/{id}`
 - `GET|POST /compradores`
 - `GET|PUT|DELETE /compradores/{empresaId}/{leilaoId}`
+- `GET /ceps/{cep}`
+
+## Swagger
+
+O projeto possui documentação interativa da API com Swagger.
+
+URL:
+
+```text
+http://localhost:8081/swagger-ui.html
+```
+
+No Swagger é possível:
+
+- visualizar todas as rotas disponíveis
+- consultar exemplos de payload
+- verificar os contratos de request e response
+- testar os endpoints diretamente pela interface
 
 ## O que Foi Entregue
 
@@ -82,7 +114,10 @@ docker compose up --build
 - Tela de empresas com consulta, inclusão, edição e exclusão
 - Tela de leilões com vendedor, início previsto e total calculado no backend
 - Validações na tela de empresa para obrigatoriedade, e-mail, URL, tamanho máximo, máscara de CNPJ, telefone, CEP e número
+- Validação de CNPJ por dígito verificador no frontend e no backend
 - Frontend empacotado como site estático e servido por `nginx`
+- Swagger disponível em `http://localhost:8081/swagger-ui.html`
+- Busca automática de CEP no formulário de empresa via ViaCEP, mediada pelo backend
 
 ## Validações Executadas
 
@@ -102,6 +137,7 @@ docker compose up --build
 
 - `razaoSocial`, `cnpj` e `usuario` obrigatórios
 - `cnpj` no formato `00.000.000/0000-00`
+- `cnpj` com verificação de dígitos válidos
 - `telefone` no formato `(00) 0000-0000` ou `(00) 00000-0000`
 - `cep` no formato `00000-000`
 - `numero` aceitando apenas dígitos
@@ -116,9 +152,6 @@ docker compose up --build
 - O banco é inicializado automaticamente com `ddl.sql` e `dml.sql` ao subir o container do PostgreSQL pela primeira vez.
 - A API foi padronizada majoritariamente em plural, como `GET /empresas`, `GET /unidades` e `GET /leiloes`. A rota `#/empresa` no frontend foi mantida apenas para o formulário de inclusão e `#/empresa/:id` para edição.
 - O recurso `comprador` utiliza chave composta formada por `empresa` e `leilao`. Por isso, as operações específicas do CRUD usam o formato `GET|PUT|DELETE /compradores/{empresaId}/{leilaoId}` em vez de um identificador simples.
-
-## Melhorias Futuras
-
-- testes automatizados de backend e frontend
-- refinamento visual da interface
-- padronização adicional de mensagens de erro no frontend
+- A API usa Spring Data JPA e não monta SQL manualmente com concatenação de entrada do usuário, o que reduz risco de SQL Injection no fluxo atual.
+- Os DTOs de entrada validam texto seguro em campos livres, bloqueando padrões suspeitos como `<script`, `javascript:` e atributos inline de evento.
+- O modal de unidades só abre e permanece visível no contexto da rota `/unidades`.
