@@ -57,6 +57,10 @@
             telefone: {
                 maxDigits: 11,
                 formatter: formatTelefone
+            },
+            cep: {
+                maxDigits: 8,
+                formatter: formatCep
             }
         };
 
@@ -105,5 +109,17 @@
         }
 
         return '(' + digits.slice(0, 2) + ') ' + digits.slice(2, 7) + '-' + digits.slice(7);
+    }
+
+    function formatCep(digits) {
+        if (!digits) {
+            return '';
+        }
+
+        if (digits.length <= 5) {
+            return digits;
+        }
+
+        return digits.slice(0, 5) + '-' + digits.slice(5);
     }
 })();

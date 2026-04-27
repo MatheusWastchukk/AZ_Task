@@ -23,7 +23,10 @@
             };
             vm.loading = false;
             vm.error = null;
+            vm.cepLookupLoading = false;
+            vm.cepLookupError = null;
             vm.isEdit = !!empresaId;
+            vm.lastCepLookup = null;
             vm.patterns = {
                 cnpj: /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/,
                 telefone: /^\(\d{2}\)\s\d{4,5}-\d{4}$/,
@@ -31,9 +34,17 @@
                 numero: /^\d+$/
             };
 
-            vm.applyCepMask = function () {
+            vm.onCepChanged = function () {
                 var digits = onlyDigits(vm.form.cep).slice(0, 8);
-                vm.form.cep = digits.length > 5 ? digits.slice(0, 5) + '-' + digits.slice(5, 8) : digits;
+
+                if (digits.length < 8) {
+                    vm.cepLookupError = null;
+                    return;
+                }
+
+                if (vm.lastCepLookup !== digits) {
+                    vm.lookupCep(digits);
+                }
             };
 
             vm.applyNumberMask = function () {
@@ -81,6 +92,23 @@
                 $location.path('/empresas');
             };
 
+            vm.lookupCep = function (cep) {
+                vm.cepLookupLoading = true;
+                vm.cepLookupError = null;
+                vm.lastCepLookup = cep;
+
+                EmpresaService.lookupCep(cep)
+                    .then(function (response) {
+                        applyCepData(response.data);
+                    })
+                    .catch(function (error) {
+                        vm.cepLookupError = ErrorMessageService.fromHttp(error, 'Não foi possível buscar o CEP informado.');
+                    })
+                    .finally(function () {
+                        vm.cepLookupLoading = false;
+                    });
+            };
+
             function buildPayload() {
                 return {
                     razaoSocial: vm.form.razaoSocial,
@@ -112,6 +140,20 @@
                 }
 
                 return form;
+            }
+
+            function applyCepData(data) {
+                if (!data) {
+                    return;
+                }
+
+                vm.form.logradouro = data.logradouro || vm.form.logradouro;
+                vm.form.bairro = data.bairro || vm.form.bairro;
+                vm.form.municipio = data.localidade || vm.form.municipio;
+
+                if (!vm.form.complemento && data.complemento) {
+                    vm.form.complemento = data.complemento;
+                }
             }
 
             function onlyDigits(value) {

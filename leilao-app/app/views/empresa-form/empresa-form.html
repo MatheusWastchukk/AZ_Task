@@ -18,9 +18,10 @@
 
             <div class="col-md-6">
                 <label class="form-label">CNPJ</label>
-                <input type="text" name="cnpj" class="form-control" ng-model="vm.form.cnpj" input-mask="cnpj" ng-pattern="vm.patterns.cnpj" maxlength="18" placeholder="00.000.000/0000-00" required inputmode="numeric">
+                <input type="text" name="cnpj" class="form-control" ng-model="vm.form.cnpj" input-mask="cnpj" cnpj-validator ng-pattern="vm.patterns.cnpj" maxlength="18" placeholder="00.000.000/0000-00" required inputmode="numeric">
                 <div class="field-error" ng-if="empresaForm.$submitted && empresaForm.cnpj.$error.required">CNPJ obrigatório.</div>
                 <div class="field-error" ng-if="empresaForm.cnpj.$error.pattern">Use o formato 00.000.000/0000-00.</div>
+                <div class="field-error" ng-if="empresaForm.cnpj.$error.cnpjValidator">Informe um CNPJ válido.</div>
             </div>
 
             <div class="col-md-6">
@@ -43,8 +44,10 @@
 
             <div class="col-md-6">
                 <label class="form-label">CEP</label>
-                <input type="text" name="cep" class="form-control" ng-model="vm.form.cep" ng-change="vm.applyCepMask()" ng-pattern="vm.patterns.cep" maxlength="9" placeholder="00000-000">
+                <input type="text" name="cep" class="form-control" ng-model="vm.form.cep" input-mask="cep" ng-change="vm.onCepChanged()" ng-pattern="vm.patterns.cep" maxlength="9" placeholder="00000-000" inputmode="numeric">
                 <div class="field-error" ng-if="empresaForm.cep.$error.pattern">Use o formato 00000-000.</div>
+                <div class="text-muted small mt-1" ng-if="vm.cepLookupLoading">Buscando endereço pelo CEP...</div>
+                <div class="field-error" ng-if="vm.cepLookupError">{{ vm.cepLookupError }}</div>
             </div>
 
             <div class="col-md-4">
