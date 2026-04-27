@@ -3,6 +3,8 @@ package br.com.az.leilao.service;
 import br.com.az.leilao.business.LoteBO;
 import br.com.az.leilao.dto.LoteRequest;
 import br.com.az.leilao.dto.LoteResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +23,7 @@ import java.util.List;
 @Validated
 @RestController
 @RequestMapping("/lotes")
+@Tag(name = "Lotes", description = "CRUD de lotes")
 public class LoteService {
 
     private final LoteBO loteBO;
@@ -30,30 +33,34 @@ public class LoteService {
     }
 
     @GetMapping
+    @Operation(summary = "Listar lotes")
     public List<LoteResponse> buscarTodos() {
         return loteBO.buscarTodos();
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Buscar lote por ID")
     public LoteResponse buscarPorId(@PathVariable Integer id) {
         return loteBO.buscarPorId(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Criar lote")
     public LoteResponse criar(@Valid @RequestBody LoteRequest request) {
         return loteBO.criar(request);
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "Atualizar lote")
     public LoteResponse atualizar(@PathVariable Integer id, @Valid @RequestBody LoteRequest request) {
         return loteBO.atualizar(id, request);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Remover lote")
     public void remover(@PathVariable Integer id) {
         loteBO.remover(id);
     }
 }
-

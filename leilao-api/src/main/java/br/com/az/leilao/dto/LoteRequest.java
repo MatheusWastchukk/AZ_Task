@@ -1,5 +1,7 @@
 package br.com.az.leilao.dto;
 
+import br.com.az.leilao.validation.SafeText;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.DecimalMin;
@@ -8,24 +10,32 @@ import java.math.BigDecimal;
 
 public class LoteRequest {
 
+    @Schema(example = "1")
     private Integer numeroLote;
 
     @NotNull
     @Length(max = 60)
+    @SafeText
+    @Schema(example = "Milho amarelo")
     private String descricao;
 
     @NotNull
     @DecimalMin(value = "0.01")
+    @Schema(example = "1000.00")
     private BigDecimal quantidade;
 
     @DecimalMin(value = "0.01")
+    @Schema(example = "12.50")
     private BigDecimal valorInicial;
 
     @NotNull
     @Length(max = 128)
+    @SafeText
+    @Schema(example = "Kg")
     private String unidade;
 
     @NotNull
+    @Schema(example = "1")
     private Integer leilaoId;
 
     public Integer getNumeroLote() {

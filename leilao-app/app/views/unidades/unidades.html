@@ -34,7 +34,7 @@
     <div class="empty-state" ng-if="!vm.loading && !vm.unidades.length">Nenhuma unidade encontrada.</div>
 </section>
 
-<div class="modal-mask" ng-if="vm.modalOpen">
+<div class="modal-mask" ng-if="vm.modalOpen && vm.isModalContextValid()">
     <div class="modal-card p-4">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h3 class="h5 mb-0">{{ vm.form.id ? 'Editar unidade' : 'Nova unidade' }}</h3>

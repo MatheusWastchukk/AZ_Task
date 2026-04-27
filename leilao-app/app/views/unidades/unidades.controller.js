@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('azLeilaoApp')
-        .controller('UnidadesController', function (ErrorMessageService, UnidadeService) {
+        .controller('UnidadesController', function ($location, $scope, ErrorMessageService, UnidadeService) {
             var vm = this;
 
             vm.unidades = [];
@@ -10,6 +10,7 @@
             vm.form = {};
             vm.loading = true;
             vm.error = null;
+            vm.isModalContextValid = isModalContextValid;
 
             vm.load = function () {
                 vm.loading = true;
@@ -27,11 +28,19 @@
             };
 
             vm.openCreate = function () {
+                if (!isModalContextValid()) {
+                    return;
+                }
+
                 vm.form = {};
                 vm.modalOpen = true;
             };
 
             vm.openEdit = function (unidade) {
+                if (!isModalContextValid()) {
+                    return;
+                }
+
                 vm.form = angular.copy(unidade);
                 vm.modalOpen = true;
             };
@@ -70,6 +79,14 @@
                         vm.error = ErrorMessageService.fromHttp(error, 'Não foi possível excluir a unidade.');
                     });
             };
+
+            $scope.$on('$routeChangeStart', function () {
+                vm.closeModal();
+            });
+
+            function isModalContextValid() {
+                return $location.path() === '/unidades';
+            }
 
             vm.load();
         });

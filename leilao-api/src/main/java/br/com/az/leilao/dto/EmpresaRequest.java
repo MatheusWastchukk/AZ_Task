@@ -1,5 +1,8 @@
 package br.com.az.leilao.dto;
 
+import br.com.az.leilao.validation.Cnpj;
+import br.com.az.leilao.validation.SafeText;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -10,50 +13,70 @@ public class EmpresaRequest {
 
     @NotBlank
     @Length(max = 64)
+    @SafeText
+    @Schema(example = "Armazens do Norte LTDA")
     private String razaoSocial;
 
     @NotBlank
     @Length(max = 32)
     @Pattern(regexp = "^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$", message = "deve seguir o formato 00.000.000/0000-00")
+    @Cnpj
+    @Schema(example = "10.000.000/0001-00")
     private String cnpj;
 
     @Length(max = 64)
+    @SafeText
+    @Schema(example = "Rua A")
     private String logradouro;
 
     @Length(max = 64)
+    @SafeText
+    @Schema(example = "Sao Paulo")
     private String municipio;
 
     @Length(max = 10)
     @Pattern(regexp = "^$|^\\d+$", message = "deve conter apenas numeros")
+    @Schema(example = "100")
     private String numero;
 
     @Length(max = 64)
+    @SafeText
+    @Schema(example = "Sala 1")
     private String complemento;
 
     @Length(max = 64)
+    @SafeText
+    @Schema(example = "Centro")
     private String bairro;
 
     @Length(max = 16)
     @Pattern(regexp = "^$|^\\d{5}-\\d{3}$", message = "deve seguir o formato 00000-000")
+    @Schema(example = "01000-000")
     private String cep;
 
     @Length(max = 32)
     @Pattern(regexp = "^$|^\\(\\d{2}\\)\\s\\d{4,5}-\\d{4}$", message = "deve seguir o formato (00) 0000-0000 ou (00) 00000-0000")
+    @Schema(example = "(11) 3000-0001")
     private String telefone;
 
     @Email
     @Length(max = 254)
+    @Schema(example = "contato@empresa.com")
     private String email;
 
     @Pattern(regexp = "^$|^(https?://).+$", message = "deve iniciar com http:// ou https://")
     @Length(max = 254)
+    @Schema(example = "https://empresa.com")
     private String site;
 
     @NotBlank
     @Length(max = 20)
+    @SafeText
+    @Schema(example = "empresa01")
     private String usuario;
 
     @Length(max = 128)
+    @Schema(example = "senhaSegura01")
     private String senha;
 
     public String getRazaoSocial() {

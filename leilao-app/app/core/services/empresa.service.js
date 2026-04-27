@@ -22,6 +22,9 @@
             this.remove = function (id) {
                 return $http.delete(API_URL + '/empresas/' + id);
             };
+
+            this.lookupCep = function (cep) {
+                return $http.get(API_URL + '/ceps/' + cep);
+            };
         });
 })();
-
